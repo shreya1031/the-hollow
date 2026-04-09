@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How to Play</title>
+  <link rel="stylesheet" href="/css/instruction_page.css"/>
+</head>
+<body>
+
+  <div class="page">
+
+    <h1 class="title">HOW TO PLAY</h1>
+
+    <!-- Frame -->
+    <div class="frame">
+      <div class="content" id="instructionsText">
+        <ol>
+          <li>Scan the Prologue card to begin the story.</li>
+          <li>Scan Fragment cards to hear audio clues.</li>
+          <li>Match fragments to the correct Chapter.</li>
+          <li>Scan Chapter cards (hard cardboard cards).</li>
+          <li>Complete all chapters and scan the Epilogue.</li>
+        </ol>
+
+        <p class="order">
+          <strong>Game Order:</strong><br/>
+          Prologue → Fragments → Chapters → Epilogue
+        </p>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="buttons">
+      <button class="btn back" onclick="window.location.href='index.html'">BACK</button>
+      <button class="btn next">NEXT</button>
+      <button class="btn read" onclick="readInstructions()">🔊 Read Instructions</button>
+      <button class="btn stop" onclick="stopReading()">⏹ Stop</button>
+    </div>
+
+    <!-- QR Code Section -->
+    <div class="qr-section">
+      <h3>Scan to open this page</h3>
+      <img src="/images/instructions-qr.png" alt="QR code for instructions page" class="qr-code">
+    </div>
+
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" autoplay loop muted>
+    <source src="/audio/Mysterium _ Board Game Background Music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function readInstructions() {
+      const text = document.getElementById("instructionsText").innerText;
+      const speech = new SpeechSynthesisUtterance(text);
+
+      speech.lang = "en-US";
+      speech.rate = 1;
+      speech.pitch = 1;
+      speech.volume = 1;
+
+      window.speechSynthesis.cancel(); // stop previous speech before starting
+      window.speechSynthesis.speak(speech);
+    }
+
+    function stopReading() {
+      window.speechSynthesis.cancel();
+    }
+  </script>
+
+</body>
+</html>
